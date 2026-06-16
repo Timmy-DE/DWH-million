@@ -1,0 +1,35 @@
+name: 'fintech_vault'
+version: '1.0.0'
+config-version: 2
+
+profile: 'fintech_vault'
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  fintech_vault:
+    raw:
+      +materialized: table
+      +schema: raw
+    vault:
+      hubs:
+        +materialized: incremental
+        +unique_key: hub_hash_key
+        +schema: vault
+      links:
+        +materialized: incremental
+        +unique_key: link_hash_key
+        +schema: vault
+      satellites:
+        +materialized: incremental
+        +unique_key: [hash_key, load_date]
+        +schema: vault
+    gold:
+      +materialized: table
+      +schema: gold
