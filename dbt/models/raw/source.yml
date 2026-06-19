@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: default
+    database: default
+    schema: default
+    tables:
+      - name: raw_transactions
+        description: "Сырые транзакции из Kafka через Spark Streaming"
