@@ -8,11 +8,10 @@
 }}
 
 SELECT DISTINCT
-  account_id,
-  account_name,
   account_hash_key,
+  account_id,
   load_date,
   record_source
-FROM {{ source('default', ref('raw_transactions')) }}
+FROM {{ ref('raw_transactions') }}
 
 {{ incremental_filter('load_date') }}
