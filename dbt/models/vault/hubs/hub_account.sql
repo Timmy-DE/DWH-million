@@ -3,8 +3,8 @@
     materialized='incremental',
     unique_key='account_hash_key',
     engine='ReplacingMergeTree()',
-    order_by='account_hash_key'
-  )
+    order_by='account_hash_key',
+    incremental_strategy='delete+insert'  )
 }}
 
 SELECT DISTINCT
@@ -13,5 +13,3 @@ SELECT DISTINCT
   load_date,
   record_source
 FROM {{ ref('raw_transactions') }}
-
-{{ incremental_filter('load_date') }}
