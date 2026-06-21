@@ -7,7 +7,7 @@
   )
 }}
 
-SELECT DISTINCT
+SELECT
     transaction_hash_key    AS link_hash_key,
     customer_hash_key,
     merchant_hash_key,
