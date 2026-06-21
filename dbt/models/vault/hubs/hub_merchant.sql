@@ -3,7 +3,8 @@
     materialized='incremental',
     unique_key='merchant_hash_key',
     engine='ReplacingMergeTree()',
-    order_by='merchant_hash_key'
+    order_by='merchant_hash_key',
+    incremental_strategy='delete+insert'
   )
 }}
 
@@ -14,6 +15,4 @@ SELECT DISTINCT
   category,
   load_date,
   record_source
-FROM {{ source('default', ref('raw_transactions')) }}
-
-{{ incremental_filter('load_date') }}
+FROM {{ ref('raw_transactions') }}
