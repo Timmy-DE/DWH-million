@@ -7,5 +7,13 @@ fintech_vault:
       host: localhost
       port: 8123
       user: default
-      password: ''
+      password: ""
+      secure: false
+    prod:
+      type: clickhouse
+      schema: default
+      host: clickhouse
+      port: 8123
+      user: default
+      password: ""
       secure: false
